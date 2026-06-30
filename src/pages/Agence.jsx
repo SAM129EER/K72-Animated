@@ -4,8 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 const agenceImages = [
-  "/Agences/CAMILLE_480X640_2.jpg",
   "/Agences/Carl_480x640.jpg",
+  "/Agences/CAMILLE_480X640_2.jpg",
   "/Agences/ChantalG_480x640.jpg",
   "/Agences/joel_480X640_3.jpg",
   "/Agences/MEGGIE_480X640_2.jpg",
@@ -26,13 +26,18 @@ const Agence = () => {
         trigger: imageDiv,
         markers: true,
         start: "top 25%",
-        end: "top -90%",
+        end: "top -85%",
         pin: true,
+        pinReparent:true,
+        pinSpacing:true,
+        pinType:"transform",
         scrub: true,
+        anticipatePin:1,
+        invalidateOnRefresh:true,
         onUpdate: (self) => {
           // console.log("Scroll progress:", self.progress);
-          const index = Math.floor(self.progress * (agenceImages.length-1));
-          imageRef.current.src = agenceImages[index]
+          const index = Math.floor(self.progress * (agenceImages.length - 1));
+          imageRef.current.src = agenceImages[index];
         },
       },
     });
@@ -41,7 +46,7 @@ const Agence = () => {
   return (
     <div>
       {" "}
-      <div className="section1">
+      <div className="section1  py-1">
         <div
           ref={imageDivRef}
           className="absolute top-[25vh] left-[25vw]  h-[18vw] w-[14vw] overflow-hidden rounded-4xl"
