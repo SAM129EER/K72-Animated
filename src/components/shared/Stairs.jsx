@@ -8,35 +8,45 @@ const Stairs = ({ children }) => {
   const loctae = useLocation().pathname;
   const pageRef = useRef(null);
   const parentStairRef = useRef(null);
-  const tl = gsap.timeline();
+ 
   useGSAP(
     function () {
-      tl.to(parentStairRef.current, {
-        display: "block",
-      });
-      tl.from(".stair", {
-        height: 0,
-        stagger: {
-          amount: -0.35,
-        },
-      });
-      tl.to(".stair", {
-        y: "100%",
-        stagger: {
-          amount: -0.35,
-        },
-      });
-      tl.to(parentStairRef.current, {
-        display: "none",
-      });
-      tl.to(".stair", {
-        y: "0",
-      });
-        gsap.from(pageRef.current,{
-          opacity:0,
-        //   scale:0.9,
-          delay:1.3
-        })
+        const tl = gsap.timeline();
+
+tl.to(parentStairRef.current, {
+  display: "block",
+});
+
+tl.from(".stair", {
+  height: 0,
+  stagger: {
+    amount: -0.35,
+  },
+});
+
+tl.to(".stair", {
+  y: "100%",
+  stagger: {
+    amount: -0.35,
+  },
+});
+
+tl.from(
+  pageRef.current,
+  {
+    opacity: 0,
+    duration: 0.8,
+  },
+  "<" // Starts at the same time the stairs begin moving away
+);
+
+tl.set(parentStairRef.current, {
+  display: "none",
+});
+
+tl.set(".stair", {
+  y: "0",
+});
     },
     [loctae],
   );
