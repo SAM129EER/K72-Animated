@@ -24,7 +24,7 @@ const Clock = () => {
   }, []);
 
   return (
-  <div className="fixed bottom-2 left-2 z-50 flex items-center gap-1 tracking-tight">
+  <div className="fixed bottom-2 left-2 z-50 flex items-center gap-1 tracking-tight text-white">
     <Globe size={24} className="-mt-1"/>
 
     <span className="font-[lausanne-sm] uppercase text-2xl">
