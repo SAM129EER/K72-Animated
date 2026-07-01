@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+
+
 @font-face {
     font-family: lausanne-sm;
     src: url(../public/fonts/Lausanne-300.woff2);
@@ -9,12 +11,12 @@
     font-family: lausanne-lg;
     src: url(../public/fonts/Lausanne-500.woff2);
 }
-
-body {
-    /* background-color: black; */
+:root{
+    --primary-hover : #d3fd50;
 }
 
+
 ::selection {
-  background: #8df548;
+  background: #d3fd50;
   color: white;
 }
