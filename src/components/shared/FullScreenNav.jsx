@@ -4,56 +4,35 @@ import NavMenuItem from "./Navigation/NavMenuItem";
 const ProjectsHeading = () => {
   return (
     <div className="py-48">
-       <div className="border-t">
-      <NavMenuItem
-        title="Projects"
-        marqueeText="See Everything"
-        images={["/NavImages/pic1.png", "/NavImages/pic2.jpg"]}
-      />
+      <div className="border-t">
+        <NavMenuItem
+          title="Projects"
+          marqueeText="See Everything"
+          images={["/NavImages/pic1.png", "/NavImages/pic2.jpg"]}
+        />
       </div>
-    
-<NavMenuItem
+
+      <NavMenuItem
         title="Agency"
         marqueeText="Know About Us"
         images={["/NavImages/Carl.png", "/NavImages/Michele_640x290.jpg"]}
       />
-     <NavMenuItem
+      <NavMenuItem
         title="Contact"
         marqueeText="Let's Talk"
-       images={["/NavImages/mail.png", "/NavImages/mail.png"]}
+        images={["/NavImages/mail.png", "/NavImages/mail.png"]}
       />
-  <NavMenuItem
+      <NavMenuItem
         title="Blog"
         marqueeText="Read Articles"
-       images={["/NavImages/pic3.jpg", "/NavImages/pic4.png"]}
+        images={["/NavImages/pic3.jpg", "/NavImages/pic4.png"]}
       />
-     
     </div>
   );
 };
 
 export default ProjectsHeading;
 
-// {/*
-//   <div className="border-b">
-//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
-//             Agency
-//           </h1>
-//           {/* <h2>Know About Us</h2> */}
-//         </div>
-//         <div className="border-b">
-//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
-//             Contect
-//           </h1>
-//           {/* <h2>Send Us A Mail</h2> */}
-//         </div>
-//         <div className="border-b">
-//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
-//             Blog
-//           </h1>
-//           {/* <h2>Read Articals</h2> */}
-//         </div>
-//       </div>
 //       <footer>
 //         <Clock />
 //         <div>
