@@ -1,47 +1,72 @@
-import Clock from "./Clock";
 import React from "react";
+import NavMenuItem from "./Navigation/NavMenuItem";
 
-const FullScreenNav = () => {
+const ProjectsHeading = () => {
   return (
-    <div>
-      <div>
-        <div></div>
-        <div>
-          <h1>Projects</h1>
-          <h2>See Everything</h2>
-        </div>
-           <div></div>
-        <div>
-          <h1>Agency</h1>
-          <h2>Know About Us</h2>
-        </div>
-           <div></div>
-        <div>
-          <h1>Contect</h1>
-          <h2>Send Us A Mail</h2>
-        </div>
-           <div></div>
-        <div>
-          <h1>Blog</h1>
-          <h2>Read Articals</h2>
-        </div>
-           <div></div>
+    <div className="py-48">
+       <div className="border-t">
+      <NavMenuItem
+        title="Projects"
+        marqueeText="See Everything"
+        images={["/NavImages/pic1.png", "/NavImages/pic2.jpg"]}
+      />
       </div>
-      <footer>
-        <Clock />
-        <div>
-          <p>Privacy Policy</p>
-          <p>Privacy Notice</p>
-          <p>Ethics Report</p>
-        </div>
-        <div>
-          <h1>FB</h1>
-          <h1>IG</h1>
-          <h1>IN</h1>
-        </div>
-      </footer>
+    
+<NavMenuItem
+        title="Agency"
+        marqueeText="Know About Us"
+        images={["/NavImages/Carl.png", "/NavImages/Michele_640x290.jpg"]}
+      />
+     <NavMenuItem
+        title="Contact"
+        marqueeText="Let's Talk"
+       images={["/NavImages/mail.png", "/NavImages/mail.png"]}
+      />
+  <NavMenuItem
+        title="Blog"
+        marqueeText="Read Articles"
+       images={["/NavImages/pic3.jpg", "/NavImages/pic4.png"]}
+      />
+     
     </div>
   );
 };
 
-export default FullScreenNav;
+export default ProjectsHeading;
+
+// {/*
+//   <div className="border-b">
+//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
+//             Agency
+//           </h1>
+//           {/* <h2>Know About Us</h2> */}
+//         </div>
+//         <div className="border-b">
+//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
+//             Contect
+//           </h1>
+//           {/* <h2>Send Us A Mail</h2> */}
+//         </div>
+//         <div className="border-b">
+//           <h1 className="font-[lausanne-lg] uppercase leading-22 mt-2.5 text-[6vw] text-center">
+//             Blog
+//           </h1>
+//           {/* <h2>Read Articals</h2> */}
+//         </div>
+//       </div>
+//       <footer>
+//         <Clock />
+//         <div>
+//           <p>Privacy Policy</p>
+//           <p>Privacy Notice</p>
+//           <p>Ethics Report</p>
+//         </div>
+//         <div>
+//           <h1>FB</h1>
+//           <h1>IG</h1>
+//           <h1>IN</h1>
+//         </div>
+//       </footer>
+//     </div>
+//   );
+// }; */}

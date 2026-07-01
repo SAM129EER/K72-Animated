@@ -20,3 +20,18 @@
   background: #d3fd50;
   color: white;
 }
+
+.moveX {
+  width: max-content;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
