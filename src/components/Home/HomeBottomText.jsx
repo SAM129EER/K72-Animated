@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Clock from "./Clock";
+// import Clock from "./Clock";
 
 const HomeBottomText = () => {
   return (

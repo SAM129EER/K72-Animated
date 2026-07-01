@@ -2,7 +2,7 @@ import React from "react";
 import Video from "../components/Home/Home_Video";
 import HomeTopText from "../components/Home/HomeTopText";
 import HomeBottomText from "../components/Home/HomeBottomText";
-import Clock from "../components/Home/Clock";
+import Clock from "../components/shared/Clock";
 // import Logo from "../components/Home/Logo";
 const Home = () => {
   return (
