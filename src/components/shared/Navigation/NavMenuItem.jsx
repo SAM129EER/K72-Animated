@@ -1,33 +1,59 @@
 import React from "react";
 
 const NavMenuItem = ({ title, marqueeText, images }) => {
-  // Duplicate images so the marquee loops smoothly
   const marqueeImages = [...images, ...images];
 
   return (
-    <div className="group relative overflow-hidden border-b cursor-pointer">
-      {/* Normal Title */}
-      <h1 className="font-[lausanne-lg] uppercase text-[6vw] leading-22 mt-3 text-center transition-transform duration-500 ease-[cubic-bezier(.76,0,.24,1)] group-hover:-translate-y-full">
-        {title}
-      </h1>
+    <div className="group relative overflow-hidden border-b  cursor-pointer">
 
-      {/* Hover Layer */}
-      <div className="absolute inset-0 translate-y-full overflow-hidden bg-(--primary-hover) transition-transform duration-500 ease-[cubic-bezier(.76,0,.24,1)] group-hover:translate-y-0">
-        <div className="moveX flex h-full w-max items-center gap-4 px-4">
-          { marqueeImages.map((image, index) => (
-            <React.Fragment key={index}>
-              <h2 className="whitespace-nowrap font-[lausanne-lg] uppercase text-[6vw] leading-22 mt-3">
-                {marqueeText}
-              </h2>
+      <div className="relative h-[8vw] overflow-hidden">
 
-              <img
-                src={image}
-                alt=""
-                className="h-22 w-60 shrink-0 rounded-full object-cover"
-              />
-            </React.Fragment>
-          ))}
+        {/* Title */}
+        <h1
+          className="
+            absolute inset-0
+            z-10
+            flex items-center justify-center
+            font-[lausanne-lg]
+            uppercase
+            text-[6vw]
+            leading-none
+            transition-opacity
+            duration-300
+            group-hover:opacity-0
+          "
+        >
+          {title}
+        </h1>
+
+        {/* Marquee */}
+        <div
+          className="
+            absolute inset-0
+            opacity-0
+            bg-[var(--primary-hover)]
+            transition-opacity
+            duration-300
+            group-hover:opacity-100
+          "
+        >
+          <div className="moveX flex h-full w-max items-center gap-4 px-4">
+            {marqueeImages.map((image, index) => (
+              <React.Fragment key={index}>
+                <h2 className="whitespace-nowrap font-[lausanne-lg] uppercase text-[6vw] leading-none text-black">
+                  {marqueeText}
+                </h2>
+
+                <img
+                  src={image}
+                  alt=""
+                  className="h-20 w-56 rounded-full object-cover shrink-0"
+                />
+              </React.Fragment>
+            ))}
+          </div>
         </div>
+
       </div>
     </div>
   );
