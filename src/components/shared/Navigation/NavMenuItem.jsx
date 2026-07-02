@@ -33,7 +33,7 @@ const NavMenuItem = ({ title, marqueeText, images }) => {
             opacity-0
             bg-[var(--primary-hover)]
             transition-opacity
-            duration-300
+            duration-200
             group-hover:opacity-100
           "
         >
