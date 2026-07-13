@@ -1,8 +1,7 @@
-import React from "react";
 import { Globe } from "lucide-react";
 import { useState, useEffect } from "react";
 
-const Clock = () => {
+const Clock = ({ className = "" }) => {
   const [time, setTime] = useState("");
   useEffect(() => {
     const updateClock = () => {
@@ -24,7 +23,7 @@ const Clock = () => {
   }, []);
 
   return (
-  <div className="fixed bottom-2 left-2 z-50 flex items-center gap-1 tracking-tight text-white">
+  <div className={`fixed bottom-2 left-2 z-50 flex items-center gap-1 tracking-tight text-white ${className}`}>
     <Globe size={24} className="-mt-1"/>
 
     <span className="font-[lausanne-sm] uppercase text-2xl">
