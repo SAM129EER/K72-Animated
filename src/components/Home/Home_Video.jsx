@@ -1,9 +1,7 @@
-import React from "react";
-
 const Video = () => {
   return (
     <div className="h-full w-full">
-      <video className="h-full w-full object-cover" autoPlay loop muted src="/K72-Home-Video.mp4"></video>
+      <video className="h-full w-full object-cover" autoPlay loop muted playsInline src="/K72-Home-Video.mp4"></video>
     </div>
   );
 };

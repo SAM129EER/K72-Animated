@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const agenceImages = [
   "/Agences/Carl_480x640.jpg",
@@ -15,8 +17,6 @@ const agenceImages = [
 ];
 
 const Agence = () => {
-  // scrollTrigger need this to work properly
-  gsap.registerPlugin(ScrollTrigger);
   const imageDivRef = useRef(null);
   const imageRef = useRef(null);
   useGSAP(() => {
@@ -24,7 +24,6 @@ const Agence = () => {
     gsap.to(imageDiv, {
       scrollTrigger: {
         trigger: imageDiv,
-        markers: true,
         start: "top 25%",
         end: "top -85%",
         pin: true,
