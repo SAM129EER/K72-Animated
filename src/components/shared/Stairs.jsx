@@ -1,59 +1,108 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { PageTransitionContext } from "./PageTransitionContext";
 
 const Stairs = ({ children }) => {
-  console.log(children);
-  const loctae = useLocation().pathname;
-  const pageRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   const parentStairRef = useRef(null);
- 
-  useGSAP(
-    function () {
-        const tl = gsap.timeline();
+  const isTransitioningRef = useRef(false);
 
-tl.to(parentStairRef.current, {
-  display: "block",
-});
+  const { contextSafe } = useGSAP(
+    () => {
+      const q = gsap.utils.selector(parentStairRef);
 
-tl.from(".stair", {
-  height: 0,
-  stagger: {
-    amount: -0.35,
-  },
-});
-
-tl.to(".stair", {
-  y: "100%",
-  stagger: {
-    amount: -0.35,
-  },
-});
-
-tl.from(
-  pageRef.current,
-  {
-    opacity: 0,
-    duration: 0.8,
-  },
-  "<" // Starts at the same time the stairs begin moving away
-);
-
-tl.set(parentStairRef.current, {
-  display: "none",
-});
-
-tl.set(".stair", {
-  y: "0",
-});
+      gsap.set(parentStairRef.current, { display: "none" });
+      gsap.set(q(".stair"), { height: 0, y: 0 });
     },
-    [loctae],
+    { scope: parentStairRef },
   );
+
+  const transitionTo = contextSafe((to) => {
+    const currentPath = `${location.pathname}${location.search}`;
+
+    if (!to || to === currentPath || isTransitioningRef.current) {
+      return;
+    }
+
+    isTransitioningRef.current = true;
+    const q = gsap.utils.selector(parentStairRef);
+    const tl = gsap.timeline();
+
+    tl.set(parentStairRef.current, { display: "block" })
+      .set(q(".stair"), { height: 0, y: 0 })
+      .to(q(".stair"), {
+        height: "100%",
+        duration: 0.4,
+        stagger: {
+          amount: -0.2,
+        },
+        ease: "power3.inOut",
+      })
+      .add(() => {
+        navigate(to);
+      })
+      .to(q(".stair"), {
+        y: "100%",
+        duration: 0.45,
+        stagger: {
+          amount: -0.2,
+        },
+        ease: "power3.inOut",
+      })
+      .set(parentStairRef.current, { display: "none" })
+      .set(q(".stair"), { height: 0, y: 0 })
+      .add(() => {
+        isTransitioningRef.current = false;
+      });
+  });
+
+  const handleClickCapture = (event) => {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    const anchor = event.target.closest("a[href]");
+
+    if (!anchor || anchor.target || anchor.hasAttribute("download")) {
+      return;
+    }
+
+    if (anchor.closest('[data-transition-manual="true"]')) {
+      return;
+    }
+
+    const url = new URL(anchor.href);
+
+    if (url.origin !== window.location.origin) {
+      return;
+    }
+
+    const nextPath = `${url.pathname}${url.search}`;
+    const currentPath = `${location.pathname}${location.search}`;
+
+    if (nextPath === currentPath) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    transitionTo(nextPath);
+  };
+
   return (
-    <div>
-      <div ref={parentStairRef} className="">
-        <div className="flex top-0 z-30 h-screen w-full fixed">
+    <PageTransitionContext.Provider value={{ transitionTo }}>
+      <div ref={parentStairRef}>
+        <div className="fixed top-0 z-[130] flex h-screen w-full">
           <div className="stair bg-black h-full w-1/5 "></div>
           <div className="stair bg-black h-full w-1/5 "></div>
           <div className="stair bg-black h-full w-1/5 "></div>
@@ -61,8 +110,8 @@ tl.set(".stair", {
           <div className="stair bg-black h-full w-1/5 "></div>
         </div>
       </div>
-      <div ref={pageRef}>{children}</div>
-    </div>
+      <div onClickCapture={handleClickCapture}>{children}</div>
+    </PageTransitionContext.Provider>
   );
 };
 
